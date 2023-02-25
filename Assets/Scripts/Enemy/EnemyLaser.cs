@@ -9,19 +9,13 @@ public class EnemyLaser : MonoBehaviour
         Destroy(gameObject, lifeTime);
     }
 
-    void OnTriggerEnter2D(Collider2D collider) 
+    void OnTriggerEnter(Collider collider) 
     {
-        if (collider.CompareTag("Player")) 
+        if (collider.CompareTag("Player") || collider.CompareTag("Boss")) 
         {
             Destroy(gameObject);
-        }
-        else if (collider.CompareTag("Boss")) 
-        {
-            Destroy(gameObject);
-        }
-        else if (!collider.isTrigger && !collider.CompareTag("Enemy")) 
-        {
-            Destroy(gameObject);
+            
+            collider.GetComponent<Health>().Damage(damage);
         }
     }
 }

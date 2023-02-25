@@ -9,11 +9,11 @@ public class PlayerProjectile : MonoBehaviour
         Destroy(gameObject, lifeTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collider) 
+    private void OnTriggerEnter(Collider collider) 
     {
         if (collider.CompareTag("Enemy"))
         {
-            Destroy(gameObject);
+            collider.GetComponent<Health>().Damage(damage);
         }
     }
 }

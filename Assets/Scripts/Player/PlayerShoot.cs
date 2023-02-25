@@ -13,6 +13,6 @@ public class PlayerShoot : MonoBehaviour
         
         var shotLaser = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         shotLaser.GetComponent<Rigidbody>().velocity = transform.forward * projectileSpeed;
-        shotLaser.GetComponent<EnemyLaser>().damage = damage;
+        shotLaser.GetComponent<PlayerProjectile>().damage = damage;
     }
 }

@@ -22,8 +22,10 @@ public class EnemyShoot : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    private void Update() 
+    private void Update()
     {
+        if (!_player) return;
+        
         _direction = _player.position - shootSpot.position;
         _direction.Normalize();
         _projectileAngle = Vector3.SignedAngle(transform.right, _direction, Vector3.forward);
