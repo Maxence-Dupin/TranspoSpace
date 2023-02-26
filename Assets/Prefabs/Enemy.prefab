@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5487041924888441631}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ShootSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5487041924888441630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.5}
+  m_LocalPosition: {x: 0, y: 0, z: -0.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5487041924893742658}
@@ -43,9 +43,10 @@ GameObject:
   - component: {fileID: 5487041924893742656}
   - component: {fileID: 5487041924893742671}
   - component: {fileID: 5487041924893742670}
-  m_Layer: 0
+  - component: {fileID: 6755770096754035948}
+  m_Layer: 3
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,3 +146,16 @@ MonoBehaviour:
   laser: {fileID: 270512981944159792, guid: 800c8f3e5a7546f40856c47873905093, type: 3}
   projectileSpeed: 20
   reloadTime: 0.5
+--- !u!114 &6755770096754035948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487041924893742669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91407b47def678141a32cf842484c06a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5

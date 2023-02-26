@@ -11,7 +11,7 @@ public class EnemyLaser : MonoBehaviour
 
     void OnTriggerEnter(Collider collider) 
     {
-        if (collider.CompareTag("Player") || collider.CompareTag("Boss")) 
+        if (collider.CompareTag("Player") || collider.CompareTag("Enemy")) 
         {
             Destroy(gameObject);
             

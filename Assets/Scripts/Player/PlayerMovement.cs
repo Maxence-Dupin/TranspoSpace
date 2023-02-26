@@ -1,16 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed;
-
     public float groundDrag;
-
     public float jumpForce;
+    public KeyCode dashKey = KeyCode.LeftAlt;
+    public float dashForce;
+    public float dashCooldown;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -20,7 +19,15 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask whatIsGround;
     bool grounded;
 
+    [Header("Transposition")]
+    public KeyCode transpositionKey = KeyCode.A;
+    public float transpositionCooldown;
+    public float transpositionRange;
+    public LayerMask swapLayerMask;
     public Transform orientation;
+    
+    private bool _canDash = true;
+    private bool _canSwap = true;
 
     float horizontalInput;
     float verticalInput;
@@ -65,6 +72,19 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         }
+
+        if (Input.GetKey(dashKey) && _canDash && grounded)
+        {
+            Dash();
+        }
+        
+        if (Input.GetKey(transpositionKey) && _canSwap)
+        {
+            if (Physics.Raycast(orientation.position, orientation.forward, out var hit, transpositionRange, swapLayerMask))
+            {
+                Swap(hit.transform.gameObject);   
+            }
+        }
     }
 
     private void MovePlayer()
@@ -95,5 +115,31 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
+    
+    private void Dash()
+    {
+        rb.AddForce((orientation.forward * verticalInput + orientation.right * horizontalInput) * dashForce, ForceMode.Impulse);
+        _canDash = false;
+        StartCoroutine(WaitDash());
+    }
+    
+    private IEnumerator WaitDash() 
+    {
+        yield return new WaitForSeconds(dashCooldown);
+        _canDash = true;
+    }
+    
+    private IEnumerator WaitSwap() 
+    {
+        yield return new WaitForSeconds(transpositionCooldown);
+        _canSwap = true;
+    }
+    
+    public void Swap(GameObject enemy)
+    {
+        (transform.position, enemy.transform.position) = (enemy.transform.position, transform.position);
+        _canSwap = false;
+        StartCoroutine(WaitSwap());
     }
 }

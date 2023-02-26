@@ -133,6 +133,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3503590280742210869}
+  - {fileID: 8346268076263977020}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -214,11 +215,20 @@ MonoBehaviour:
   moveSpeed: 10
   groundDrag: 2
   jumpForce: 1.2
+  dashKey: 308
+  dashForce: 100
+  dashCooldown: 2
   jumpKey: 32
   playerHeight: 2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  transpositionKey: 97
+  transpositionCooldown: 5
+  transpositionRange: 20
+  swapLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
   orientation: {fileID: 3503590280742210869}
 --- !u!54 &3503590280878258067
 Rigidbody:
@@ -251,6 +261,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 6236755909891623499, guid: 69f45502e3515584898fc50b86775500, type: 3}
   damage: 1
   projectileSpeed: 50
+  cameraTransform: {fileID: 3503590280742210869}
+  shootSpot: {fileID: 8346268076263977020}
 --- !u!114 &5062991843441831294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,3 +276,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
+--- !u!1 &3534188554076211243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8346268076263977020}
+  m_Layer: 0
+  m_Name: ShootSpot
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8346268076263977020
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3534188554076211243}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0.545}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3503590280878258064}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
